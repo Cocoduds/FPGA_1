@@ -1,0 +1,25 @@
+# Vivado-generated files to ignore
+*.jou
+*.log
+*.str
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.webtalk/
+*.Xil/
+*.xdc~    # backup constraint files
+*.bak
+*.tmp
+
+# Other
+*.wdb
+*.vcd
+*.bit
+*.bin
+*.elf
+*.mem
+*.xpr
+*.xsd
+
