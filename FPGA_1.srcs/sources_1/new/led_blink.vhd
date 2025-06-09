@@ -26,7 +26,7 @@ use IEEE.NUMERIC_STD.ALL;
 entity led_blinker is
     Port (
         CLK12MHZ     : in  std_logic;
-        led     : out std_logic_vector(0 downto 0)
+        led0     : out std_logic
     );
 end led_blinker;
 
@@ -47,7 +47,7 @@ begin
             end if;
         end if;
     end process;
-    led(0) <= led_state;
+    led0 <= led_state;
 
 
     

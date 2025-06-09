@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 05/30/2025 11:49:57 PM
+-- Create Date: 06/08/2025 07:24:03 PM
 -- Design Name: 
--- Module Name: 7seg - Behavioral
+-- Module Name: uart_transmit - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 

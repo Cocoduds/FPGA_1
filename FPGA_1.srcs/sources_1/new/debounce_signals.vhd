@@ -33,30 +33,35 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity debounce is
-    Port ( CLK12MHZ : in  STD_LOGIC;
-           btn      : in  STD_LOGIC_Vector(1 downto 0);
-           transmit : out STD_LOGIC);
+    Port ( CLK12MHZ     : in  STD_LOGIC;
+           btn          : in  STD_LOGIC;
+           transmit     : out STD_LOGIC;
+           debug_led    : out std_logic
+           );
 end debounce;
 
 architecture Behavioral of debounce is
     constant threshold            : integer := 1000000;
+    constant MAX_COUNT            : unsigned(30 downto 0) := to_unsigned(1000000000, 31);
     signal button_ff1, button_ff2 : std_logic := '0';
-    signal count                  : unsigned(30 downto 0) := "000000000000000000000000000000";
-
+    signal count                  : unsigned(30 downto 0) := "0000000000000000000000000000000";
+--        signal transmit               : std_logic := '0';
 
 begin
 
-    first: process(CLK12MHZ)
+    next_button_state: process(CLK12MHZ)
     begin
-        button_ff1 <= btn(0);
-        button_ff2 <= button_ff1;   
-    end process first;
+        if rising_edge(CLK12MHZ) then
+            button_ff1 <= btn;
+            button_ff2 <= button_ff1;
+        end if;   
+    end process next_button_state;
     
     debouncer: process(CLK12MHZ)
     begin
         if rising_edge(CLK12MHZ) then
             if button_ff2 = '1' then
-                if count /= 1000000000 then
+                if count /= MAX_COUNT then
                     count <= count + 1;
                 end if;
             else
@@ -67,8 +72,10 @@ begin
             
             if (count > threshold) then 
                 transmit <= '1';
+                debug_led <= '1';
             else
                 transmit <= '0';
+                debug_led <= '0';
             end if;
             
         end if;
