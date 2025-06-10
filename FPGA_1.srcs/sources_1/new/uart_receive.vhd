@@ -93,7 +93,7 @@ begin
 
                     when receiving =>
                         if baud_counter = 0 then
-                            if bit_counter = 7 then
+                            if bit_counter = 8 then
                                 state <= stop_bit;
                                 bit_counter <= (others => '0');
                                 debug_led(0) <= shiftright_register(0);

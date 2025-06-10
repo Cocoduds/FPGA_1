@@ -66,7 +66,7 @@ begin
             else
                 if busy = '0' then
                     if transmit = '1' then
-                        shiftright_register <= '0' & data & '1';  -- start bit, data bits, stop bit
+                        shiftright_register <= '1' & data & '0';  -- start bit, data bits, stop bit
                         busy <= '1';
                         baudrate_counter <= (others => '0');
                         bit_counter <= (others => '0');
